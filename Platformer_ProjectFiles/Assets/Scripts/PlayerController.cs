@@ -41,6 +41,11 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsGround;
     private bool isGrounded;
 
+    public Vector3 GetPosition()
+    {
+        return transform.position;
+    }
+
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
@@ -49,15 +54,10 @@ public class PlayerController : MonoBehaviour
         Jumps = JumpsValue;
         playerHealth = 8;
     }
-    public Vector3 GetPosition()
-    {
-        return transform.position;
-    }
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(GroundCheck.position, checkRadius, whatIsGround);
     }
-
     private void Update()
     {
         Damage();
@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
             Application.Quit();
         }
     }
+
     public void DoubleJump()
     {
         if (Input.GetKeyDown(KeyCode.Space) && Jumps > 0)
