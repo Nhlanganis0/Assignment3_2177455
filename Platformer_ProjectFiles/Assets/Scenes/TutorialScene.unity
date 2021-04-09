@@ -1886,6 +1886,7 @@ MonoBehaviour:
   Health_1: {fileID: 227279801}
   Health_2: {fileID: 962409361}
   Health_3: {fileID: 336046349}
+  Health_4: {fileID: 0}
   _button: {fileID: 818515442}
   Enemy: {fileID: 5154872952369050034, guid: 975f833badda27e4ba1ea4528b3dbcaa, type: 3}
   Platforms: {fileID: 793231868}
@@ -4843,7 +4844,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 588554914}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: Play_Again
         m_Mode: 1
