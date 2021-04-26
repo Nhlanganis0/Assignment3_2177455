@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] HighScoreTable HighScore_Table;
     [SerializeField] float EnemyKillJump;
+    [SerializeField] int playerJumps_Available;
     [SerializeField] float jumpForce;
     [SerializeField] float runSpeed;
     private int playerHealth;
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
         Jumps = JumpsValue;
         playerHealth = 8;
+        playerJumps_Available = 3;
     }
     private void FixedUpdate()
     {
@@ -80,17 +82,27 @@ public class PlayerController : MonoBehaviour
 
     public void DoubleJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && Jumps > 0)
+        if (playerJumps_Available <= 3) 
         {
-            rb.velocity = Vector2.up * jumpForce;
-            Jumps--;
+            if (Input.GetKeyDown(KeyCode.Space) && Jumps > 0)
+            {
+                rb.velocity = Vector2.up * jumpForce;
+                Jumps--;
+            }
+            else if (Input.GetKeyDown(KeyCode.Space) && Jumps == 0 && isGrounded == true)
+            {
+                rb.velocity = Vector2.up * jumpForce;
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && Jumps == 0 && isGrounded == true)
+        if(playerJumps_Available >= 3)
         {
-            rb.velocity = Vector2.up * jumpForce;
+            EnemyTurn();
         }
     }
+    public void EnemyTurn()
+    {
 
+    }
     public void Damage()
     {
         if (playerHealth == 6)
@@ -135,6 +147,7 @@ public class PlayerController : MonoBehaviour
         {
             Space.Select();
             Space.OnSelect(null);
+            playerJumps_Available = playerJumps_Available - 1;
         }
     }
 
